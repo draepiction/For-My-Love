@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>11 Songs That Feel Like All the Ways I Love You</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #b5835a;
+    --wisteria: #a782c3; 
+    --cream: #d4d4d2;
+    --deep-teal: #002b2b; 
+    --midnight-teal: #001414;
+    --firefly: #ffd700;
+  }
+
+  body {
+    background: radial-gradient(circle at center, var(--deep-teal) 0%, var(--midnight-teal) 100%),
+      url('https://www.transparenttextures.com/patterns/dark-matter.png');
+    background-blend-mode: overlay;
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    padding: 120px 20px;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 10%, rgba(0, 20, 20, 0.7) 100%);
+    pointer-events: none;
+    z-index: 150;
+  }
+
+  #fireflies { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 50; pointer-events: none; }
+  .firefly { 
+    position: absolute; 
+    width: 3px; height: 3px; 
+    background: var(--firefly); 
+    border-radius: 50%; 
+    box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.6); 
+  }
+
+  #petal-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 60;
+    pointer-events: none;
+  }
+  
+  .petal-svg {
+    position: absolute;
+    top: -50px;
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+  }
+
+  .wisteria-top, .wisteria-bottom {
+    position: fixed;
+    left: 0; width: 100%; height: 450px;
+    background-image: url('https://png.pngtree.com/png-vector/20240517/ourmid/pngtree-beautiful-up-side-wisteria-flowers-png-image_12460048.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 200; 
+  }
+  .wisteria-top { top: -120px; }
+  .wisteria-bottom { bottom: -120px; transform: rotate(180deg); }
+
+  .container {
+    max-width: 750px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 20, 20, 0.9);
+    backdrop-filter: blur(15px);
+    padding: 60px;
+    border: 1px solid rgba(181, 131, 90, 0.2);
+    box-shadow: 0 0 80px rgba(0,0,0,0.6);
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .header-box { text-align: center; margin-bottom: 80px; border-bottom: 1px double var(--gold); padding-bottom: 40px; }
+  
+  .earbuds-note {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 25px;
+    display: block;
+    font-style: italic;
+  }
+
+  h1 { 
+    font-family: 'Cinzel', serif; font-size: 26px; letter-spacing: 3px; color: var(--gold); margin: 0; text-transform: uppercase;
+    animation: glowTitle 5s ease-in-out infinite;
+  }
+
+  .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--cream);
+    opacity: 0.8;
+    margin-top: 12px;
+    display: block;
+  }
+
+  @keyframes glowTitle {
+    0%, 100% { text-shadow: 0 0 10px rgba(181, 131, 90, 0.2); }
+    50% { text-shadow: 0 0 20px rgba(181, 131, 90, 0.5); }
+  }
+
+  .monthsary { font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px; color: var(--gold); opacity: 0.9; margin-top: 25px; display: block; }
+
+  .song { margin-bottom: 65px; padding: 20px; cursor: pointer; transition: all 0.6s ease; border-radius: 8px; }
+  .song:hover { background: radial-gradient(circle, rgba(167, 130, 195, 0.12) 0%, transparent 80%); transform: scale(1.02); }
+  .title { font-family: 'Cinzel', serif; font-size: 20px; color: var(--wisteria); margin-bottom: 18px; letter-spacing: 1px; }
+  .desc { font-size: 15px; line-height: 1.8; opacity: 0.9; color: var(--cream); text-align: center; white-space: pre-wrap; }
+
+  .spotify-link {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 12px 30px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    background: transparent;
+  }
+  .spotify-link:hover {
+    background: var(--gold);
+    color: var(--midnight-teal);
+    box-shadow: 0 0 20px rgba(181, 131, 90, 0.4);
+  }
+
+  #player { display: none; }
+  .now-playing { position: fixed; bottom: 40px; right: 40px; font-family: 'Cinzel', serif; font-size: 13px; color: var(--wisteria); background: rgba(0, 20, 20, 0.98); border: 1px solid var(--wisteria); padding: 15px 25px; opacity: 0; transition: opacity 1s ease; z-index: 250; letter-spacing: 2px; }
+  .now-playing.active { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div id="petal-container"></div>
+<div id="fireflies"></div>
+<div class="wisteria-top"></div>
+<div class="wisteria-bottom"></div>
+
+<div class="container">
+  <div class="header-box">
+    <span class="earbuds-note">Best experienced with earbuds</span>
+    <h1>11 Songs That Feel Like All the Ways I Love You</h1>
+    <span class="subtitle">A collection of echoes, for when words aren't enough.</span>
+    <span class="monthsary">11th monthsary</span>
+  </div>
+
+  <div class="song" onclick="playSong('N0Slt3QCe7U', 'Steam – Shelly')">
+    <div class="title">Steam – Shelly</div>
+    <div class="desc">You sent me this before we even got together, and I still love this song so much because it’s exactly how our love feels, how I miss you, miss your voice, your presence, the way you make me feel, sending messages I hope you’ll see, aching to be near you, and knowing I’ll love you no matter the distance, while the wait to see you feels endless, like staring at the walls, time moving slower than anything I know, wishing I could be with you already.</div>
+  </div>
+
+  <div class="song" onclick="playSong('6gFWD_Jv6JA', 'Stay – Galdive')">
+    <div class="title">Stay – Galdive</div>
+    <div class="desc">How it feels to stay on call with you. Everything feels alive, safe, and simple, and I just want to stay there with you.</div>
+  </div>
+
+  <div class="song" onclick="playSong('PbqAkXlHTsI', 'Too Good – Christian Kuria')">
+    <div class="title">Too Good – Christian Kuria</div>
+    <div class="desc">How your love feels to me, in the way you’re the one who upholds me when I’m broken down. You are simply too good to me.</div>
+  </div>
+
+  <div class="song" onclick="playSong('vBy7FaapGRo', 'Best Part – Daniel Caesar, H.E.R.')">
+    <div class="title">Best Part – Daniel Caesar, H.E.R.</div>
+    <div class="desc">Even from afar, I see you in everything. The quiet mornings, the little comforts, the simple moments that somehow feel brighter because of you. You truly are the best part.</div>
+  </div>
+
+  <div class="song" onclick="playSong('xGPeNN9S0Fg', 'Little Things – One Direction')">
+    <div class="title">Little Things – One Direction</div>
+    <div class="desc">How it feels to love every inch of you, even the things you still rarely love and behold to me.</div>
+  </div>
+
+  <div class="song" onclick="playSong('MkDfaLeNBrE', 'Tu – Maye')">
+    <div class="title">Tu – Maye</div>
+    <div class="desc">Our love feels like time standing still, while everything else fades away. I feel complete with you.</div>
+  </div>
+
+  <div class="song" onclick="playSong('DGfZjkKYPys', 'Meet Me in Amsterdam – RINI')">
+    <div class="title">Meet Me in Amsterdam – RINI</div>
+    <div class="desc">How I hope to meet you, maybe not Amsterdam but somewhere we’ll one day agree upon.</div>
+  </div>
+
+  <div class="song" onclick="playSong('4MXruqqZb8Q', 'Japanese Denim – Daniel Caesar')">
+    <div class="title">Japanese Denim – Daniel Caesar</div>
+    <div class="desc">Love feels like I’ll skip everything else and wait for you, think only of you, and keep choosing you forever.</div>
+  </div>
+
+  <div class="song" onclick="playSong('76HDcXUxNno', 'No One Noticed – The Marías')">
+    <div class="title">No One Noticed – The Marías</div>
+    <div class="desc">The solemn moments where I feel lost here without you, crushed by everything around me, retreating into my quiet, silently wallowing in my room, aching just to see your face and hear your voice.</div>
+  </div>
+
+  <div class="song" onclick="playSong('4tZ969oc-yI', 'Billie Bossa Nova – Billie Eilish')">
+    <div class="title">Billie Bossa Nova – Billie Eilish</div>
+    <div class="desc">The tension that builds when we’re both desperately needy, undone by your allure, where even the sight of your body makes me lose myself completely.</div>
+  </div>
+
+  <div class="song" onclick="playSong('V9PVRfjEBTI', 'Birds of a Feather – Billie Eilish')">
+    <div class="title">Birds of a Feather – Billie Eilish</div>
+    <div class="desc">Sometimes I find myself looking too far in the future when I’m long gone and I mourn the death of me and the love for you that I will carry with me into forever.</div>
+  </div>
+
+  <a href="https://open.spotify.com/playlist/0hVRmRJYoN6bWCrdDKjzJP?si=_VeF_DrsT2WTNHMGOysHNw" target="_blank" class="spotify-link">View the Full Collection on Spotify</a>
+</div>
+
+<div class="now-playing" id="nowPlaying">NOW PLAYING</div>
+<iframe id="player" src="" allow="autoplay"></iframe>
+
+<script>
+const fireflyContainer = document.getElementById('fireflies');
+for (let i = 0; i < 20; i++) {
+  const f = document.createElement('div');
+  f.className = 'firefly';
+  f.style.left = Math.random() * 100 + 'vw';
+  f.style.top = Math.random() * 100 + 'vh';
+  fireflyContainer.appendChild(f);
+  animateFirefly(f);
+}
+
+function animateFirefly(el) {
+  const x = (Math.random() - 0.5) * 450;
+  const y = (Math.random() - 0.5) * 450;
+  el.animate([
+    { transform: 'translate(0, 0)', opacity: 0.1 },
+    { transform: `translate(${x}px, ${y}px)`, opacity: 1 },
+    { transform: `translate(${x*1.1}px, ${y*1.1}px)`, opacity: 0 }
+  ], { duration: 8000 + Math.random() * 5000, iterations: Infinity, easing: 'ease-in-out' });
+}
+
+const petalContainer = document.getElementById('petal-container');
+const svgNS = "http://www.w3.org/2000/svg";
+
+function createPetals() {
+  for (let i = 0; i < 18; i++) {
+    const isLeft = Math.random() < 0.5;
+    const startX = isLeft ? (Math.random() * 18) : (82 + Math.random() * 18);
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.classList.add("petal-svg");
+    svg.style.left = startX + "vw";
+    const path = document.createElementNS(svgNS, "path");
+    path.setAttribute("d", "M50,5 C75,25 90,60 50,95 C10,60 25,25 50,5");
+    const defs = document.createElementNS(svgNS, "defs");
+    const grad = document.createElementNS(svgNS, "radialGradient");
+    grad.setAttribute("id", "petalGrad");
+    const s1 = document.createElementNS(svgNS, "stop");
+    s1.setAttribute("offset", "0%"); s1.setAttribute("stop-color", "#d1b3e6");
+    const s2 = document.createElementNS(svgNS, "stop");
+    s2.setAttribute("offset", "100%"); s2.setAttribute("stop-color", "#a782c3");
+    grad.appendChild(s1); grad.appendChild(s2);
+    defs.appendChild(grad);
+    svg.appendChild(defs);
+    svg.appendChild(path);
+    path.setAttribute("fill", "url(#petalGrad)");
+    petalContainer.appendChild(svg);
+    animatePetal(svg, isLeft);
+  }
+}
+
+function animatePetal(el, isLeft) {
+  const duration = 16000 + Math.random() * 10000;
+  const drift = isLeft ? -(Math.random() * 4) : (Math.random() * 4);
+  el.animate([
+    { top: '-60px', transform: 'rotate(0deg) translateX(0px)' },
+    { top: '110vh', transform: `rotate(${360 + Math.random() * 720}deg) translateX(${drift}vw)` }
+  ], { duration: duration, iterations: Infinity, delay: -Math.random() * duration });
+}
+
+createPetals();
+
+function playSong(id, title) {
+  document.getElementById("player").src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
+  const now = document.getElementById("nowPlaying");
+  now.textContent = "NOW PLAYING: " + title;
+  now.classList.add("active");
+  setTimeout(() => { now.classList.remove("active"); }, 5000);
+}
+</script>
+</body>
+</html>
